@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div class="p-3 mt-4">
   <div class="container">
@@ -10,10 +11,62 @@
             <hr />
             <form method="POST">
               {% csrf_token %}
-              {{ template_data.form.as_p }}
-              <button type="submit"
-                class="btn bg-dark text-white">Sign Up
-              </button>
+
+              <!-- Render fields manually instead of using as_p to avoid missing email -->
+              <div class="form-group">
+                <label for="{{ template_data.form.username.id_for_label }}">Username</label>
+                {{ template_data.form.username }}
+                {% if template_data.form.username.errors %}
+                  <div class="text-danger">
+                    {% for error in template_data.form.username.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- Email Field (Fixed and Properly Integrated) -->
+              <div class="form-group">
+                <label for="{{ template_data.form.email.id_for_label }}">Email</label>
+                {{ template_data.form.email }}
+                {% if template_data.form.email.errors %}
+                  <div class="text-danger">
+                    {% for error in template_data.form.email.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- Password Field -->
+              <div class="form-group">
+                <label for="{{ template_data.form.password1.id_for_label }}">Password</label>
+                {{ template_data.form.password1 }}
+                {% if template_data.form.password1.errors %}
+                  <div class="text-danger">
+                    {% for error in template_data.form.password1.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+
+            <!-- Confirm Password Field -->
+            <div class="form-group mb-4">  <!-- Added mb-4 here -->
+              <label for="{{ template_data.form.password2.id_for_label }}">Confirm Password</label>
+              {{ template_data.form.password2 }}
+              {% if template_data.form.password2.errors %}
+                <div class="text-danger">
+                  {% for error in template_data.form.password2.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn bg-dark text-white">Sign Up</button>
+
             </form>
           </div>
         </div>
