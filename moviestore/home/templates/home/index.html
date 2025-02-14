@@ -1,15 +1,34 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
 <header class="masthead bg-index text-white text-center py-4">
-  <div class="container d-flex align-items-center flex- column pt-2">
+  <div class="container d-flex align-items-center flex-column pt-2">
     <h2>Movies Store</h2>
     <p>Your Ticket to Unlimited Entertainment!</p>
+    <a href="{% url 'movies.index' %}" class="btn btn-primary btn-lg mt-3">Browse Movies</a>
   </div>
 </header>
+
 <div class="p-3">
   <div class="container">
     <div class="row mt-3">
       <div class="col mx-auto text-center mb-3">
-        <h4>Welcome to the best movie store!!</h4>
+        <h4>Welcome to the Best Movie Store!</h4>
+        <p>
+          Discover a world of movies—whether you’re in the mood for an action-packed thriller, a heartwarming drama, or a side-splitting comedy, we have something for everyone.
+        </p>
+      </div>
+    </div>
+
+
+    
+    
+    <!-- Call-to-Action Section -->
+    <div class="row mt-5">
+      <div class="col text-center">
+        <p>
+          Not sure where to start? Check out our curated lists and trending picks for your next movie night.
+        </p>
+        <a href="{% url 'movies.index' %}" class="btn btn-outline-primary">Explore Now</a>
       </div>
     </div>
   </div>
